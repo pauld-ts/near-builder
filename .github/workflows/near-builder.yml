@@ -23,4 +23,21 @@ jobs:
             echo "${CARGO_HOME:-$HOME/.cargo}/bin" >> $GITHUB_PATH
           fi
       - run: "make neard"
+      - run: tar -czvf neard-${{ env.NEAR_VERSION}}.tgz -C target/release/ neard
+      - uses: actions/upload-artifact@v3
+        with:
+          name: "neard-${{ env.NEAR_VERSION }}.tgz"
+          path: "neard-${{ env.NEAR_VERSION }}.tgz"
+  release:
+    runs-on: ubuntu-latest
+    needs: [build-near]
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: "neard-${{ env.NEAR_VERSION }}.tgz"
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            neard-${{ env.NEAR_VERSION }}.tgz
+          tag_name: "neard-${{ env.NEAR_VERSION }}"
 
