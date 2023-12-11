@@ -15,5 +15,5 @@ jobs:
         with:
           repository: "near/nearcore"
           ref: "${{ env.NEAR_VERSION }}"
-      - run: "apt install binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev cmake gcc g++ protobuf-compiler libssl-dev pkg-config clang llvm cargo"
+      - run: "sudo apt install binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev cmake gcc g++ protobuf-compiler libssl-dev pkg-config clang llvm cargo"
 
