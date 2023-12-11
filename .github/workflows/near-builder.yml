@@ -17,4 +17,10 @@ jobs:
           ref: "${{ env.NEAR_VERSION }}"
       - run: "sudo apt update"
       - run: "sudo apt install binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev cmake gcc g++ protobuf-compiler libssl-dev pkg-config clang llvm cargo"
+      - run: |
+          if ! command -v rustup &> /dev/null ; then
+            curl --proto '=https' --tlsv1.2 --retry 10 --retry-connrefused -fsSL "https://sh.rustup.rs" | sh -s -- --default-toolchain none -y
+            echo "${CARGO_HOME:-$HOME/.cargo}/bin" >> $GITHUB_PATH
+          fi
+      - run: "make neard"
 
