@@ -1,2 +1,2 @@
 # near-builder
-build near binary
+build near binary 
