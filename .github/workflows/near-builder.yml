@@ -5,7 +5,7 @@ permissions:
   contents: write
 
 env:
-  NEAR_VERSION: 1.36.5
+  NEAR_VERSION: 1.37.0-rc.3
 
 jobs:
   build-near:
